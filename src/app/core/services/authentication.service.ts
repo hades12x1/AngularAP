@@ -26,7 +26,8 @@ export class AuthenticationService {
           // login successful if there's a jwt token in the response
           if (res && res.statusResponse.statusCode === 200) {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('currentUser', JSON.stringify(res.data));
+            // Đặt giống biến của ubot portal để redirect về UBot Portal
+            localStorage.setItem('authenticationToken', JSON.stringify(res.data.id_token));
             this.currentUserSubject.next(res.data);
           }
           return res;
@@ -35,7 +36,7 @@ export class AuthenticationService {
 
     logout() {
         // remove user from local storage to log user out
-        localStorage.removeItem('currentUser');
+        localStorage.removeItem('authenticationToken');
         this.currentUserSubject.next(null);
     }
 }
