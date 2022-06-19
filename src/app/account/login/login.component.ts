@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
             return;
           }
           this.toastr.success('Đăng nhập thành công!');
-          this.router.navigate(['/']);
+          this.router.navigate(['/invoice/email']);
         },
         error => {
           this.toastr.error('Thông tin đăng nhập không tồn tại!');

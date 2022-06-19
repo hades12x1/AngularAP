@@ -2,10 +2,29 @@ import { MenuItem } from './menu.model';
 
 export const MENU: MenuItem[] = [
     {
-        id: 80,
+        id: 79,
         label: 'MENUITEMS.COMPONENTS.TEXT',
         isTitle: true
     },
+  {
+    id: 80,
+    label: 'MENUITEMS.INVOICE.TEXT',
+    icon: 'bxs-report',
+    subItems: [
+      {
+        id: 81,
+        label: 'MENUITEMS.INVOICE.LIST.EMAIL',
+        link: '/invoice/email',
+        parentId: 80
+      },
+      {
+        id: 82,
+        label: 'MENUITEMS.INVOICE.LIST.INPUT_INVOICE',
+        link: '/invoice/input-invoice',
+        parentId: 80
+      }
+    ]
+  },
     {
         id: 81,
         label: 'MENUITEMS.UIELEMENTS.TEXT',

@@ -225,7 +225,14 @@
       }
     },
     "COMPONENTS": {
-      "TEXT": "UBot Invoice"
+      "TEXT": "UBot Report"
+    },
+    "INVOICE": {
+      "TEXT": "Invoice",
+      "LIST": {
+        "EMAIL": "Hộp thư đến",
+        "INPUT_INVOICE": "Hoá đơn đầu vào"
+      }
     },
     "UIELEMENTS": {
       "TEXT": "UI Elements",
