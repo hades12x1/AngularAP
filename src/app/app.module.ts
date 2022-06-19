@@ -46,7 +46,11 @@ export function createTranslateLoader(http: HttpClient): any {
     NgbTooltipModule,
     ScrollToModule.forRoot(),
     NgbModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot({
+      closeButton: true,
+      timeOut: 2000,
+      progressBar: true,
+    }),
   ],
   bootstrap: [AppComponent],
   providers: [

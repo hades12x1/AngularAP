@@ -3,6 +3,7 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/c
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import {AuthenticationService} from "../services/authentication.service";
+import {environment} from "../../../environments/environment";
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -10,6 +11,10 @@ export class ErrorInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(catchError(err => {
+            if (err.url === environment.URL_AUTHENTICATION) {
+              return;
+            }
+
             if (err.status === 401) {
                 // auto logout if 401 response returned from api
                 this.authenticationService.logout();

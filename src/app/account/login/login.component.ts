@@ -22,7 +22,6 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   rememberMe: boolean = false;
   submitted = false;
-  error = '';
   returnUrl: string;
 
   // set the currenr year
@@ -78,7 +77,6 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/']);
         },
         error => {
-          this.error = error ? error : '';
           this.toastr.error('Thông tin đăng nhập không tồn tại!');
         });
     }

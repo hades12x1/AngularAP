@@ -21,7 +21,7 @@ export class AuthenticationService {
     }
 
     login(email: string, password: string, rememberMe: boolean): Observable<any> {
-      return this.http.post<any>(environment.SERVER_URL + `/api/authenticate`, { 'rememberMe': rememberMe, 'username': email, 'password': password })
+      return this.http.post<any>(environment.URL_AUTHENTICATION, { 'rememberMe': rememberMe, 'username': email, 'password': password })
         .pipe(map(res => {
           // login successful if there's a jwt token in the response
           if (res && res.statusResponse.statusCode === 200) {
