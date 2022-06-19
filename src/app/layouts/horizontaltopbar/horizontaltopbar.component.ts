@@ -4,8 +4,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { LanguageService } from '../../core/services/language.service';
 
 import { EventService } from '../../core/services/event.service';
-import { AuthenticationService } from '../../core/services/auth.service';
-import { AuthfakeauthenticationService } from '../../core/services/authfake.service';
+import { AuthenticationService } from '../../core/services/authentication.service';
 
 import { DOCUMENT } from '@angular/common';
 
@@ -34,15 +33,12 @@ export class HorizontaltopbarComponent implements OnInit, AfterViewInit {
 
   listLang = [
     { text: 'English', flag: 'assets/images/flags/us.jpg', lang: 'en' },
-    { text: 'Spanish', flag: 'assets/images/flags/spain.jpg', lang: 'es' },
-    { text: 'German', flag: 'assets/images/flags/germany.jpg', lang: 'de' },
-    { text: 'Italian', flag: 'assets/images/flags/italy.jpg', lang: 'it' },
-    { text: 'Russian', flag: 'assets/images/flags/russia.jpg', lang: 'ru' },
+    { text: 'Spanish', flag: 'assets/images/flags/spain.jpg', lang: 'es' }
   ];
 
   // tslint:disable-next-line: max-line-length
-  constructor(@Inject(DOCUMENT) private document: any, private router: Router, private eventService: EventService, private authService: AuthenticationService,
-    private authFackservice: AuthfakeauthenticationService,
+  constructor(@Inject(DOCUMENT) private document: any, private router: Router, private eventService: EventService,
+    private authFackservice: AuthenticationService,
     public languageService: LanguageService,
     // tslint:disable-next-line: variable-name
     public _cookiesService: CookieService) {
@@ -79,12 +75,8 @@ export class HorizontaltopbarComponent implements OnInit, AfterViewInit {
    * Logout the user
    */
   logout() {
-    if (environment.defaultauth === 'firebase') {
-      this.authService.logout();
-    } else {
-      this.authFackservice.logout();
-    }
-    this.router.navigate(['/account/login']);
+    this.authFackservice.logout();
+    this.router.navigate(['/login']);
   }
 
   /**

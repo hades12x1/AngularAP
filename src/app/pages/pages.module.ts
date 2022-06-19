@@ -22,6 +22,8 @@ import { TablesModule } from './tables/tables.module';
 import { IconsModule } from './icons/icons.module';
 import { ChartModule } from './chart/chart.module';
 import { HttpClientModule } from '@angular/common/http';
+import {LoginComponent} from "./login/login.component";
+import {CarouselModule} from "ngx-owl-carousel-o";
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -30,7 +32,9 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
 ]);
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    LoginComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -52,7 +56,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     NgbTooltipModule,
     NgbCollapseModule,
     SimplebarAngularModule,
-    LightboxModule
+    LightboxModule,
+    CarouselModule,
   ],
 })
 export class PagesModule { }

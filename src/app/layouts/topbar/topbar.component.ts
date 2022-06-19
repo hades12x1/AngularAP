@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
-import { environment } from '../../../environments/environment';
 import { CookieService } from 'ngx-cookie-service';
 import { LanguageService } from '../../core/services/language.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -23,7 +22,7 @@ export class TopbarComponent implements OnInit {
   countryName;
   valueset;
 
-  constructor(@Inject(DOCUMENT) private document: any, private router: Router, 
+  constructor(@Inject(DOCUMENT) private document: any, private router: Router,
               public languageService: LanguageService,
               public translate: TranslateService,
               public _cookiesService: CookieService) {
@@ -83,7 +82,7 @@ export class TopbarComponent implements OnInit {
    */
   logout() {
 
-    this.router.navigate(['/account/login']);
+    this.router.navigate(['/login']);
   }
 
   /**
