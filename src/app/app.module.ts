@@ -16,6 +16,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import {JwtInterceptor} from "./core/helpers/jwt.interceptor";
 import {ErrorInterceptor} from "./core/helpers/error.interceptor";
+import {ToastrModule} from "ngx-toastr";
 
 export function createTranslateLoader(http: HttpClient): any {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -44,7 +45,8 @@ export function createTranslateLoader(http: HttpClient): any {
     NgbNavModule,
     NgbTooltipModule,
     ScrollToModule.forRoot(),
-    NgbModule
+    NgbModule,
+    ToastrModule.forRoot()
   ],
   bootstrap: [AppComponent],
   providers: [

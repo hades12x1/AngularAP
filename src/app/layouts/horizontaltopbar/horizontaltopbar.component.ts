@@ -10,7 +10,6 @@ import { DOCUMENT } from '@angular/common';
 
 import { MENU } from './menu';
 import { MenuItem } from './menu.model';
-import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-horizontaltopbar',
@@ -38,7 +37,7 @@ export class HorizontaltopbarComponent implements OnInit, AfterViewInit {
 
   // tslint:disable-next-line: max-line-length
   constructor(@Inject(DOCUMENT) private document: any, private router: Router, private eventService: EventService,
-    private authFackservice: AuthenticationService,
+    private authenticationService: AuthenticationService,
     public languageService: LanguageService,
     // tslint:disable-next-line: variable-name
     public _cookiesService: CookieService) {
@@ -75,7 +74,7 @@ export class HorizontaltopbarComponent implements OnInit, AfterViewInit {
    * Logout the user
    */
   logout() {
-    this.authFackservice.logout();
+    this.authenticationService.logout();
     this.router.navigate(['/login']);
   }
 

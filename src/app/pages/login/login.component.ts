@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ActivatedRoute, Router } from '@angular/router';
 import {AuthenticationService} from "../../core/services/authentication.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,7 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
               private router: Router,
+              private toastr: ToastrService,
               private authenticationService: AuthenticationService) { }
   loginForm: FormGroup;
   rememberMe: boolean = false;
@@ -63,20 +65,21 @@ export class LoginComponent implements OnInit {
 
     // stop here if form is invalid
     if (this.loginForm.invalid) {
-      console.log('invalid')
       return;
     } else {
-      this.authenticationService.login(this.f.email.value, this.f.password.value, this.rememberMe).subscribe(data => {
+      this.authenticationService.login(this.f.email.value, this.f.password.value, this.rememberMe).subscribe(res => {
         // login successful if there's a jwt token in the response
-        if (!data || data.data !== 200) {
-          console.log(data);
+        if (!res || res.statusResponse.statusCode !== 200) {
+          this.toastr.error('Đăng nhập thất bại, lỗi hệ thống!');
+          return;
         }
         // store user details and jwt token in local storage to keep user logged in between page refreshes
-        localStorage.setItem('currentUser', JSON.stringify(data));
+        this.toastr.success('Đăng nhập thành công!');
+        localStorage.setItem('currentUser', JSON.stringify(res.data));
         this.router.navigate(['/']);
       }, error => {
         this.error = error ? error : '';
-        console.log(this.error );
+        this.toastr.error('Thông tin đăng nhập không tồn tại!');
       });
     }
   }
